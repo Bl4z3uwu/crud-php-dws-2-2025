@@ -12,6 +12,8 @@ require 'cabecalho.php';
 </p>
 <?php
 
+require 'conexao.php';
+
 require 'rodape.php';
 
 ?>

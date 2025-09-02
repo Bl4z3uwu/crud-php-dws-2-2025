@@ -36,13 +36,16 @@ $stmt = $conn->query($sql);
                     </a>
                 </td>
                 <td>
-                    <a href="#" class="btn btn-warning btn-sm" href="#">
+                    <a class="btn btn-warning btn-sm"
+                    href="formulario-alterar-midia.php?id=<?=$row["id"]?>">
                         <span data-feather="edit"></span>
                         Editar
                     </a>
                 </td>
                 <td>
-                    <a href="#" class="btn btn-danger btn-sm" href="#">
+                    <a class="btn btn-danger btn-sm" 
+                    href="excluir-midia.php?id=<?=$row["id"]?>"
+                    onclick="if(!confirm('Tem certeza que deseja excluir?')) return false;">
                         <span data-feather="trash-2"></span>
                         Excluir
                     </a>
