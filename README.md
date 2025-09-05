@@ -12,8 +12,3 @@ O projeto visa implementar as operações básicas de um sistema CRUD utilizando
 - **MySQL**
 - **HTML/CSS**
 - **Bootstrap**
-
-## Autor
-
-- **Nome**: Gabriel Almeida Jordão
-- **E-mail**: gabriel.jordao@aluno.ifsp.edu.br
