@@ -49,7 +49,7 @@ $rowPaciente = $stmt->fetch();
                 </div>
                 <div class="mb-3 col-4">
                     <label for="telefone" class="form-label">Telefone:</label>
-                    <textarea class="form-control" id="telefone" name="telefone"><?=$rowPaciente['telefone']?></textarea>
+                    <input class="form-control" id="telefone" name="telefone" value="<?=$rowPaciente['telefone']?>">
                 </div>
             </div>
 
