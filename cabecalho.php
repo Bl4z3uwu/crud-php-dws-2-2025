@@ -49,16 +49,16 @@
         <div class="navbar-collapse collapse" id="navbarsExample03">
             <ul class="navbar-nav mr-auto px-3 pb-2">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Início</a>
+                    <a class="nav-link" href="index.php">Início</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Formulário</a>
+                    <a class="nav-link" href="formulario-paciente.php">Formulário</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Listagem</a>
+                    <a class="nav-link" href="listagem-pacientes.php">Listagem</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn btn-light btn-sm btn-block font-1 my-1">Entrar</a>
+                    <a class="nav-link btn btn-light btn-sm btn-block font-1 my-1" href="form-login.php">Entrar</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link btn btn-danger btn-sm btn-block font-1 my-1">Sair</a>
@@ -67,7 +67,7 @@
         </div>
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start pe-3 d-none d-sm-block">
             <div class="text-end">
-                <a href="#" class="btn btn-light me-2">
+                <a href="form-login.php" class="btn btn-light me-2">
                     <span data-feather="log-in"></span>
                     Entrar
                 </a>
@@ -92,13 +92,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="formulario-midia.php">
+                            <a class="nav-link" aria-current="page" href="formulario-pacientes.php">
                                 <span data-feather="file-text"></span>
                                 Formulário
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="listagem-midia.php">
+                            <a class="nav-link" aria-current="page" href="listagem-pacientes.php">
                                 <span data-feather="list"></span>
                                 Listagem
                             </a>

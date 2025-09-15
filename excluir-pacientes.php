@@ -1,6 +1,6 @@
 <?php
 
-$titulo_pagina = 'Página de exclusão de mídias';
+$titulo_pagina = 'Página de exclusão de pacientes';
 require 'cabecalho.php';
 
 require 'conexao.php';
@@ -9,7 +9,7 @@ $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
 
 echo "<p><b>ID:</b> $id</p>";
 
-$sql = "DELETE FROM `midias` WHERE `id` = ?";
+$sql = "DELETE FROM `pacientes` WHERE `id` = ?";
 
 $stmt = $conn->prepare($sql);
 $result = $stmt->execute([$id]);
