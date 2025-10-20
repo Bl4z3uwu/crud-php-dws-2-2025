@@ -52,16 +52,19 @@
                     <a class="nav-link" href="index.php">Início</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="formulario-paciente.php">Formulário</a>
+                    <a class="nav-link" href="formulario-midia.php">Formulário</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="listagem-pacientes.php">Listagem</a>
+                    <a class="nav-link" href="listagem-midia.php">Listagem</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pagina-protegida.php">Pagina protegida</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link btn btn-light btn-sm btn-block font-1 my-1" href="form-login.php">Entrar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn btn-danger btn-sm btn-block font-1 my-1">Sair</a>
+                    <a class="nav-link btn btn-danger btn-sm btn-block font-1 my-1" href="sair.php">Sair</a>
                 </li>
             </ul>
         </div>
@@ -71,7 +74,7 @@
                     <span data-feather="log-in"></span>
                     Entrar
                 </a>
-                <a href="#" class="btn btn-danger me-2">
+                <a href="sair.php" class="btn btn-danger me-2">
                     <span data-feather="log-out"></span>
                     Sair
                 </a>
@@ -92,15 +95,21 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="formulario-pacientes.php">
+                            <a class="nav-link" aria-current="page" href="formulario-midia.php">
                                 <span data-feather="file-text"></span>
                                 Formulário
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="listagem-pacientes.php">
+                            <a class="nav-link" aria-current="page" href="listagem-midia.php">
                                 <span data-feather="list"></span>
                                 Listagem
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="pagina-protegida.php">
+                                <span data-feather="lock"></span>
+                                Pagina protegida
                             </a>
                         </li>
                     </ul>

@@ -1,27 +1,27 @@
 <?php
 
-$titulo_pagina = 'Página de alteração de pacientes';
+$titulo_pagina = 'Página de alteração de mídias';
 require 'cabecalho.php';
 
 require 'conexao.php';
 
 $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
-$nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
-$data_nascimento = filter_input(INPUT_POST, 'data_nascimento', FILTER_SANITIZE_SPECIAL_CHARS);
-$telefone = filter_input(INPUT_POST, 'telefone', FILTER_SANITIZE_SPECIAL_CHARS);
-$foto_paciente = filter_input(INPUT_POST, 'foto_paciente', FILTER_SANITIZE_URL);
+$titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_SPECIAL_CHARS);
+$ano = filter_input(INPUT_POST, 'ano', FILTER_SANITIZE_NUMBER_INT);
+$genero = filter_input(INPUT_POST, 'genero', FILTER_SANITIZE_SPECIAL_CHARS);
+$poster = filter_input(INPUT_POST, 'poster', FILTER_SANITIZE_URL);
 
 echo "<p><b>ID:</b> $id</p>";
-echo "<p><b>Nome:</b> $nome</p>";
-echo "<p><b>Data de Nascimento:</b> $data_nascimento</p>";
-echo "<p><b>Telefone:</b> $telefone</p>";
-echo "<p><b>Foto:</b> $foto_paciente</p>";
+echo "<p><b>Título:</b> $titulo</p>";
+echo "<p><b>Ano:</b> $ano</p>";
+echo "<p><b>Gênero:</b> $genero</p>";
+echo "<p><b>Poster:</b> $poster</p>";
 
-$sql = "UPDATE `pacientes` SET `nome` = ?, `data_nascimento` = ?, `telefone` = ?, `foto_paciente` = ? 
+$sql = "UPDATE `midias` SET `titulo` = ?, `ano` = ?, `genero` = ?, `poster` = ? 
             WHERE `id` = ?";
 
 $stmt = $conn->prepare($sql);
-$result = $stmt->execute([$nome, $data_nascimento, $telefone, $foto_paciente, $id]);
+$result = $stmt->execute([$titulo, $ano, $genero, $poster, $id]);
 $count = $stmt->rowCount();
 
 if ($result && $count >= 1) {
