@@ -1,18 +1,17 @@
 <?php
 
 session_start();
+require 'logica-autenticacao.php';
+
+if (!autenticado()) {
+    $_SESSION['restrito'] = true;
+    redireciona();
+    die();
+}
 
 $titulo_pagina = 'Formulário de cadastro de mídias';
 require 'cabecalho.php';
 
-if(!isset($_SESSION["email"])) {
-?>
-    <div class='alert alert-danger' role='alert'>
-        <h4>Esta é uma página PROTEGIDA!.</h4>
-        <p>Você está tentando acessar conteúdo restrito.</p>
-    </div>
-<?php
-} else {
 ?>
 <form action="inserir-midia.php" method="post">
     <div class="row">
@@ -43,8 +42,7 @@ if(!isset($_SESSION["email"])) {
     </div>
 </form>
 <?php
-}
 
-    require 'rodape.php';
+require 'rodape.php';
 
 ?>

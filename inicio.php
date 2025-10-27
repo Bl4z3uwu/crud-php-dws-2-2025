@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+require 'logica-autenticacao.php';
+
 $titulo_pagina = 'Início';
 require 'cabecalho.php';
 
@@ -12,7 +15,15 @@ require 'cabecalho.php';
 </p>
 <?php
 
-require 'conexao.php';
+    if (isset($_SESSION["restrito"]) && $_SESSION["restrito"] == true) {
+    ?>
+        <div class='alert alert-danger' role='alert'>
+            <h4>Esta é uma página PROTEGIDA!.</h4>
+            <p>Você está tentando acessar conteúdo restrito.</p>
+        </div>
+    <?php
+        unset($_SESSION["restrito"]);
+    }
 
 require 'rodape.php';
 

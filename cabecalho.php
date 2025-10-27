@@ -38,6 +38,15 @@
 </head>
 
 <body>
+    <?php
+    if(!function_exists('autenticado')) {
+    ?>
+        <br>
+        <h1>Atenção você esqueceu o require do arquivo <strong><code>logica-autenticacao.php!</code></strong> </h1>
+    <?php
+        die();
+    }
+    ?>
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
             CRUD PHP
@@ -61,6 +70,9 @@
                     <a class="nav-link" href="pagina-protegida.php">Pagina protegida</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="listagem-usuario.php">Usuários</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link btn btn-light btn-sm btn-block font-1 my-1" href="form-login.php">Entrar</a>
                 </li>
                 <li class="nav-item">
@@ -70,14 +82,33 @@
         </div>
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start pe-3 d-none d-sm-block">
             <div class="text-end">
-                <a href="form-login.php" class="btn btn-light me-2">
-                    <span data-feather="log-in"></span>
-                    Entrar
-                </a>
-                <a href="sair.php" class="btn btn-danger me-2">
-                    <span data-feather="log-out"></span>
-                    Sair
-                </a>
+                <?php
+                if (!autenticado()) {
+                ?>
+                    <a href="formulario-usuarios.php" class="btn btn-info me-2">
+                        <span data-feather="log-in"></span>
+                        Cadastrar
+                    </a>
+                    <a href="form-login.php" class="btn btn-light me-2">
+                        <span data-feather="log-in"></span>
+                        Entrar
+                    </a>
+                <?php
+                } else {
+                ?>
+                    <span class="navbar-text">
+                        <span data-feather="user"></span>
+                        <span class="fs-4 mx-2">
+                            <?= nome_usuario(); ?>
+                        </span>
+
+                    <a href="sair.php" class="btn btn-danger me-2">
+                        <span data-feather="log-out"></span>
+                        Sair
+                    </a>
+                <?php
+                }
+                ?>
             </div>
         </div>
 
@@ -110,6 +141,12 @@
                             <a class="nav-link" aria-current="page" href="pagina-protegida.php">
                                 <span data-feather="lock"></span>
                                 Pagina protegida
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="listagem-usuario.php">
+                                <span data-feather="users"></span>
+                                Usuários
                             </a>
                         </li>
                     </ul>

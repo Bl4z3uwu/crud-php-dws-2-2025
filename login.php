@@ -1,21 +1,27 @@
 <?php
 session_start();
+require 'logica-autenticacao.php';
 
 $titulo_pagina = 'Página de destino da autenticação (LOGIN)';
 require 'cabecalho.php';
-
-// require 'conexao.php';
+require 'conexao.php';
 
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
 
 echo "<p><b>E-mail:</b> $email</p>";
 
-if($email == "gabrieljordao@gmail.com" && $senha == "123") {
+$sql = "SELECT nome, senha FROM `usuarios` WHERE `email` = ?";
+$stmt = $conn->prepare($sql);
+$stmt->execute([$email]);
+
+$row = $stmt->fetch();
+
+if(password_verify($senha, $row['senha'])) {
     // DEU CERTO
 
     $_SESSION["email"] = $email;
-    $_SESSION["nome"] = "Gabriel Jordão";
+    $_SESSION["nome"] = $row['nome'];
 ?>
     <div class='alert alert-success' role='alert'>
         <h4>Autenticado com sucesso!</h4>

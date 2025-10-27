@@ -1,5 +1,13 @@
 <?php
 
+session_start();
+require 'logica-autenticacao.php';
+
+if (autenticado()) {
+    redireciona();
+    die();
+}
+
 $titulo_pagina = '';
 require 'cabecalho.php';
 
