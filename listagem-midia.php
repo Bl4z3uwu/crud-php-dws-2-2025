@@ -3,7 +3,7 @@
 session_start();
 require 'logica-autenticacao.php';
 
-$titulo_pagina = 'Listagem de produtos';
+$titulo_pagina = 'Listagem de mídias';
 require 'cabecalho.php';
 
 require 'conexao.php';

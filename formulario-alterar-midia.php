@@ -1,4 +1,6 @@
 <?php
+session_start();
+require 'logica-autenticacao.php';
 
 $titulo_pagina = 'Formulário de alteração de mídias';
 require 'cabecalho.php';

@@ -67,6 +67,9 @@
                     <a class="nav-link" href="listagem-midia.php">Listagem</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="listagem-midia-cards.php">Mídias</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="pagina-protegida.php">Pagina protegida</a>
                 </li>
                 <li class="nav-item">
@@ -135,6 +138,12 @@
                             <a class="nav-link" aria-current="page" href="listagem-midia.php">
                                 <span data-feather="list"></span>
                                 Listagem
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="listagem-midia-cards.php">
+                                <span data-feather="grid"></span>
+                                Mídias
                             </a>
                         </li>
                         <li class="nav-item">
