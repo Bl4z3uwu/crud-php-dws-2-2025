@@ -11,7 +11,7 @@ $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
 
 echo "<p><b>E-mail:</b> $email</p>";
 
-$sql = "SELECT nome, senha FROM `usuarios` WHERE `email` = ?";
+$sql = "SELECT nome, senha FROM usuarios WHERE email = ?";
 $stmt = $conn->prepare($sql);
 $stmt->execute([$email]);
 

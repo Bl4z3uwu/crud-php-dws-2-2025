@@ -9,7 +9,7 @@ $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
 
 echo "<p><b>ID:</b> $id</p>";
 
-$sql = "DELETE FROM `midias` WHERE `id` = ?";
+$sql = "DELETE FROM midias WHERE id = ?";
 
 $stmt = $conn->prepare($sql);
 $result = $stmt->execute([$id]);

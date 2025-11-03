@@ -8,7 +8,7 @@ require 'cabecalho.php';
 
 require 'conexao.php';
 
-$sql = "SELECT `id`, `nome`, `email` FROM `usuarios`";
+$sql = "SELECT id, nome, email FROM usuarios";
 $stmt = $conn->query($sql);
 
 ?>

@@ -15,7 +15,7 @@ echo "<p><b>Ano:</b> $ano</p>";
 echo "<p><b>Gênero:</b> $genero</p>";
 echo "<p><b>Poster:</b> $poster</p>";
 
-$sql = "INSERT INTO `midias` (`titulo`, `ano`, `genero`, `poster`) VALUES (?, ?, ?, ?)";
+$sql = "INSERT INTO midias (titulo, ano, genero, poster) VALUES (?, ?, ?, ?)";
 
 $stmt = $conn->prepare($sql);
 $result = $stmt->execute([$titulo, $ano, $genero, $poster]);

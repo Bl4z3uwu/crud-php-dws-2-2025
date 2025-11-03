@@ -19,8 +19,8 @@ echo "<p><b>Ano:</b> $ano</p>";
 echo "<p><b>Gênero:</b> $genero</p>";
 echo "<p><b>Poster:</b> $poster</p>";
 
-$sql = "UPDATE `midias` SET `titulo` = ?, `ano` = ?, `genero` = ?, `poster` = ? 
-            WHERE `id` = ?";
+$sql = "UPDATE midias SET titulo = ?, ano = ?, genero = ?, poster = ? 
+            WHERE id = ?";
 
 $stmt = $conn->prepare($sql);
 $result = $stmt->execute([$titulo, $ano, $genero, $poster, $id]);

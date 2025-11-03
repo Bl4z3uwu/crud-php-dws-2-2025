@@ -123,37 +123,37 @@
                 <div class="position-sticky mt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="inicio.php">
+                            <a class="nav-link <?php if ($titulo_pagina == 'Início') echo 'active'; ?>" aria-current="page" href="inicio.php">
                                 <span data-feather="home"></span>
                                 Início
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="formulario-midia.php">
+                            <a class="nav-link <?php if ($titulo_pagina == 'Formulário de cadastro de mídias') echo 'active'; ?>" aria-current="page" href="formulario-midia.php">
                                 <span data-feather="file-text"></span>
                                 Formulário
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="listagem-midia.php">
+                            <a class="nav-link <?php if ($titulo_pagina == 'Listagem de mídias') echo 'active'; ?>" aria-current="page" href="listagem-midia.php">
                                 <span data-feather="list"></span>
                                 Listagem
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="listagem-midia-cards.php">
+                            <a class="nav-link <?php if ($titulo_pagina == 'Mídias') echo 'active'; ?>" aria-current="page" href="listagem-midia-cards.php">
                                 <span data-feather="grid"></span>
                                 Mídias
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="pagina-protegida.php">
+                            <a class="nav-link <?php if ($titulo_pagina == 'Pagina protegida') echo 'active'; ?>" aria-current="page" href="pagina-protegida.php">
                                 <span data-feather="lock"></span>
                                 Pagina protegida
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="listagem-usuario.php">
+                            <a class="nav-link <?php if ($titulo_pagina == 'Listagem de usuários') echo 'active'; ?>" aria-current="page" href="listagem-usuario.php">
                                 <span data-feather="users"></span>
                                 Usuários
                             </a>

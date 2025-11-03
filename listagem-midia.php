@@ -8,8 +8,10 @@ require 'cabecalho.php';
 
 require 'conexao.php';
 
-$sql = "SELECT `id`, `titulo`, `ano`, `genero`, `poster` FROM `midias` ORDER BY titulo";
+$sql = "SELECT id, titulo, ano, genero, poster FROM midias ORDER BY titulo";
 $stmt = $conn->query($sql);
+
+echo "<p>Driver: <b>" . $conf["driver"] . "</b> </p>";
 
 ?>
 <div class="table-responsive">

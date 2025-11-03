@@ -19,7 +19,7 @@ if(empty($id)) {
 
 require 'conexao.php';
 
-$sql = "SELECT titulo, ano, genero, poster FROM `midias` WHERE `id` = ?";
+$sql = "SELECT titulo, ano, genero, poster FROM midias WHERE id = ?";
 
 $stmt = $conn->prepare($sql);
 $result = $stmt->execute([$id]);

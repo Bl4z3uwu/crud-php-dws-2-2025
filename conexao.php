@@ -1,5 +1,14 @@
 <?php
-$conf = parse_ini_file("config.ini");
+error_reporting(E_ALL);
+//ini_set("display_errors", 1);
+
+if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
+
+    $conf = parse_ini_file("config-local-mysql.ini");
+    //$conf = parse_ini_file("config-local-postgresql.ini");
+} else {
+    $conf = parse_ini_file("config-byet.ini");
+}
 
 $string_connection = $conf["driver"] .
         ":dbname=" . $conf["database"] .

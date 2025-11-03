@@ -16,7 +16,7 @@ echo "<p><b>Nome:</b> $nome</p>";
 echo "<p><b>Email:</b> $email</p>";
 echo "<p><b>Senha hash:</b> $senha_hash</p>";
 
-$sql = "INSERT INTO `usuarios` (`nome`, `email`, `senha`) VALUES (?, ?, ?)";
+$sql = "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)";
 
 $stmt = $conn->prepare($sql);
 $result = $stmt->execute([$nome, $email, $senha_hash]);
