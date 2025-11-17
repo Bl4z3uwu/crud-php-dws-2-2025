@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require 'logica-autenticacao.php';
 
@@ -30,6 +29,25 @@ require 'cabecalho.php';
             <button class="btn btn-primary w-100 py-2" type="submit">Entrar</button> 
 
         </form>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-8 offset-2">
+        <?php
+        if (isset($_SESSION["msg_erro"])) {
+            ?>
+            <div class="row mt-3">
+                <div class="col-8">
+                    <div class="alert alert-danger" role="alert">
+                        <h4><?= $_SESSION["msg_erro"] ?></h4>
+                        <p><?= $_SESSION["erro"] ?></p>
+                    </div>
+                </div>
+            </div>
+        <?php
+            unset($_SESSION["msg_erro"]);
+        }
+        ?>
     </div>
 </div>
 <?php

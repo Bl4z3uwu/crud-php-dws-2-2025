@@ -2,8 +2,13 @@
 session_start();
 require 'logica-autenticacao.php';
 
+if (!autenticado()) {
+    $_SESSION['restrito'] = true;
+    redireciona();
+    die();
+}
+
 $titulo_pagina = 'Página de alteração de mídias';
-require 'cabecalho.php';
 
 require 'conexao.php';
 
@@ -22,34 +27,27 @@ echo "<p><b>Poster:</b> $poster</p>";
 $sql = "UPDATE midias SET titulo = ?, ano = ?, genero = ?, poster = ? 
             WHERE id = ?";
 
-$stmt = $conn->prepare($sql);
-$result = $stmt->execute([$titulo, $ano, $genero, $poster, $id]);
+try {
+    $stmt = $conn->prepare($sql);
+    $result = $stmt->execute([$titulo, $ano, $genero, $poster, $id]);
+} catch (Exception $e) {
+    $result = false;
+    $error = $e->getMessage();
+}
+
 $count = $stmt->rowCount();
 
-if ($result && $count >= 1) {
-    // deu certo o update
-?>
-    <div class='alert alert-success' role='alert'>
-        <h4>Dados alterados com sucesso.</h4>
-    </div>
-<?php
-} elseif ($result && $count == 0) {
-?>
-    <div class='alert alert-secondary' role='alert'>
-        <h4>Nenhum dado foi alterado.</h4>
-    </div>
-<?php
-
+$_SESSION["result"] = $result;
+if ($result && $count == 0) {
+    $result = false;
+    $_SESSION["msg_erro"] = "Nenhum dado foi alterado.";
+    $_SESSION["erro"] = "Nenhuma alteração foi registrada.";
+} elseif ($result) {
+    $_SESSION["msg_sucesso"] = "Dados alterados com sucesso!";
 } else {
-    // não deu certo, erro
-    $errorArray = $stmt->errorInfo();
-?>
-    <div class='alert alert-danger' role='alert'>
-        <h4>Falha ao efetuar gravação.</h4>
-        <p><?= $errorArray[2]; ?></p>
-    </div>
-<?php
+    $_SESSION["msg_erro"] = "Falha ao efetuar gravação.";
+    $_SESSION["erro"] = $error;
 }
-require 'rodape.php';
 
+redireciona("listagem-midia.php");
 ?>

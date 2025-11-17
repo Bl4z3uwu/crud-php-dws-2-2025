@@ -1,7 +1,12 @@
 <?php
+session_start();
+require 'logica-autenticacao.php';
 
-$titulo_pagina = 'Página de exclusão de mídias';
-require 'cabecalho.php';
+if (!autenticado()) {
+    $_SESSION['restrito'] = true;
+    redireciona();
+    die();
+}
 
 require 'conexao.php';
 
@@ -11,35 +16,26 @@ echo "<p><b>ID:</b> $id</p>";
 
 $sql = "DELETE FROM midias WHERE id = ?";
 
-$stmt = $conn->prepare($sql);
-$result = $stmt->execute([$id]);
+try {
+    $stmt = $conn->prepare($sql);
+    $result = $stmt->execute([$id]);
+} catch (Exception $e) {
+    $result = false;
+    $error = $e->getMessage();
+}
 
 $count = $stmt->rowCount();
+$_SESSION["result"] = $result;
 
-if ($result && $count >= 1) {
-    // deu certo o delete
-?>
-    <div class='alert alert-success' role='alert'>
-        <h4>Registro excluido com sucesso!</h4>
-    </div>
-<?php
-} elseif ($count == 0) {
-?>
-    <div class='alert alert-danger' role='alert'>
-        <h4>Falha ao efetuar exclusão.</h4>
-        <p>Não foi encontrado nenhum registro com o ID = <?= $id ?>.</p>
-    </div>
-<?php
+if ($result && $count == 0) {
+    $result = false;
+    $_SESSION["msg_erro"] = "Falha ao efetuar exclusão";
+    $_SESSION["erro"] = "Não foi encontrado nenhum registro com o ID ($id).";
+} elseif ($result) {
+    $_SESSION["msg_sucesso"] = "Registro excluido com sucesso!";
 } else {
-    // não deu certo, erro
-    $errorArray = $stmt->errorInfo();
-?>
-    <div class='alert alert-danger' role='alert'>
-        <h4>Falha ao efetuar gravação.</h4>
-        <p><?= $errorArray[2]; ?></p>
-    </div>
-<?php
+    $_SESSION["msg_erro"] = "Falha ao efetuar exclusão.";
+    $_SESSION["erro"] = $error;
 }
-require 'rodape.php';
 
-?>
+redireciona("listagem.php");

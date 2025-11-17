@@ -2,20 +2,24 @@
 session_start();
 require 'logica-autenticacao.php';
 
-$titulo_pagina = 'Formulário de alteração de mídias';
-require 'cabecalho.php';
+if (!autenticado()) {
+    $_SESSION['restrito'] = true;
+    redireciona();
+    die();
+}
 
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
 
 if(empty($id)) {
-?>
-    <div class='alert alert-danger' role='alert'>
-        <h4>Falha ao abrir formulário para edição.</h4>
-        <p>ID da mídia está vazio.</p>
-    </div>
-<?php
+    $_SESSION["result"] = false;
+    $_SESSION["msg_erro"] = "Falha ao abrir formulário para edição.";
+    $_SESSION["erro"] = "ID da mídia está vazio.";
+    redireciona("listagem-midia.php");
     exit;
 }
+
+$titulo_pagina = 'Formulário de alteração de mídias';
+require 'cabecalho.php';
 
 require 'conexao.php';
 
@@ -54,7 +58,7 @@ $rowMidia = $stmt->fetch();
             </div>
 
             <button type="submit" class="btn btn-primary">Gravar</button>
-            <button type="reset" class="btn btn-warning">Cancelar</button>
+            <a href="listagem-midia.php" class="btn btn-warning">Cancelar</a>
         </div>
         <div class="col-3">
             <img src="<?=$rowMidia['poster']?>" 

@@ -2,44 +2,42 @@
 session_start();
 require 'logica-autenticacao.php';
 
-$titulo_pagina = 'Página de destino da autenticação (LOGIN)';
-require 'cabecalho.php';
 require 'conexao.php';
 
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
 
-echo "<p><b>E-mail:</b> $email</p>";
+if ($conf["debug"]) {
+    echo "<p><b>Email:</b> $email</p>";
+}
 
-$sql = "SELECT nome, senha FROM usuarios WHERE email = ?";
-$stmt = $conn->prepare($sql);
-$stmt->execute([$email]);
+$sql = "SELECT id, nome, senha FROM usuarios WHERE email = ?";
+
+try {
+    $stmt = $conn->prepare($sql);
+    $result = $stmt->execute([$email]);
+} catch (Exception $e) {
+    $result = false;
+    $error = $e->getMessage();
+}
 
 $row = $stmt->fetch();
 
 if(password_verify($senha, $row['senha'])) {
     // DEU CERTO
-
+    $_SESSION["id_usuario"] = $row['id'];
     $_SESSION["email"] = $email;
     $_SESSION["nome"] = $row['nome'];
-?>
-    <div class='alert alert-success' role='alert'>
-        <h4>Autenticado com sucesso!</h4>
-    </div>
-<?php
+    redireciona("index.php");
 }else{
     // NÃO DEU CERTO, SENHA OU EMAIL ERRADO
-
+    unset($_SESSION["id_usuario"]);
     unset($_SESSION["email"]);
     unset($_SESSION["nome"]);
-?>
-    <div class='alert alert-danger' role='alert'>
-        <h4>Falha ao efetuar autenticação.</h4>
-        <p>Usuário ou senha incorretos.</p>
-    </div>
-<?php
+
+    $_SESSION["msg_erro"] = "Falha ao efetuar autenticação.";
+    $_SESSION["erro"] = "Usuário ou senha incorretos." . $error;
+
+    redireciona("form-login.php");
+    
 }
-
-require 'rodape.php';
-
-?>

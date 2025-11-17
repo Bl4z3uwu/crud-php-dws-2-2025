@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require 'logica-autenticacao.php';
 
@@ -42,6 +41,34 @@ require 'cabecalho.php';
     </div>
 </form>
 <?php
+if (isset($_SESSION["result"])) {
+    if ($_SESSION["result"]) {
+?>
+    <div class="row mt-3">
+        <div class="col-8">
+            <div class="alert alert-success mt-3" role="alert">
+                <h4><?= $_SESSION["msg_sucesso"] ?></h4>
+            </div>
+        </div>
+    </div>
+<?php
+    unset($_SESSION["msg_sucesso"]);
+    } else {
+?>
+    <div class="row mt-3">
+        <div class="col-8">
+            <div class="alert alert-danger mt-3" role="alert">
+                <h4><?= $_SESSION["msg_erro"] ?></h4>
+                <p><?= $_SESSION["erro"] ?></p>
+            </div>
+        </div>
+    </div>
+<?php
+    unset($_SESSION["msg_erro"]);
+    unset($_SESSION["erro"]);
+    }
+    unset($_SESSION["result"]);
+}
 
 require 'rodape.php';
 

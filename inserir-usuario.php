@@ -2,8 +2,6 @@
 session_start();
 require 'logica-autenticacao.php';
 
-$titulo_pagina = 'Página de inserção de usuários';
-require 'cabecalho.php';
 require 'conexao.php';
 
 $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -18,26 +16,27 @@ echo "<p><b>Senha hash:</b> $senha_hash</p>";
 
 $sql = "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)";
 
-$stmt = $conn->prepare($sql);
-$result = $stmt->execute([$nome, $email, $senha_hash]);
+try {
+    $stmt = $conn->prepare($sql);
+    $result = $stmt->execute([$nome, $email, $senha_hash]);
+} catch (Exception $e) {
+    $result = false;
+    $error = $e->getMessage();
+}
+
+$_SESSION["result"] = $result;
 
 if ($result) {
-    // deu certo o insert
-?>
-    <div class='alert alert-success' role='alert'>
-        <h4>Dados gravados com sucesso!</h4>
-    </div>
-<?php
+    $_SESSION["msg_sucesso"] = "Dados gravados com sucesso!";
 } else {
-    // não deu certo, erro
-    $errorArray = $stmt->errorInfo();
-?>
-    <div class='alert alert-danger' role='alert'>
-        <h4>Falha ao efetuar gravação.</h4>
-        <p><?= $errorArray[2]; ?></p>
-    </div>
-<?php
-}
-require 'rodape.php';
 
+    if (strpos($error, 'Duplicate entry') != false) {
+        $error = "O e-mail <b>$email</b> já está registrado. <br>Não é possível utiliza-lo.";
+    }
+
+    $_SESSION["msg_erro"] = "Falha ao efetuar gravação.";
+    $_SESSION["erro"] = $error;
+}
+
+redireciona("formulario-usuarios.php");
 ?>

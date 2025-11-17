@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require 'logica-autenticacao.php';
 
@@ -24,7 +23,6 @@ if (!empty($_GET["campo"]) && !empty($_GET["ordem"])) {
 }
 
 $sql = "SELECT id, titulo, ano, genero, poster FROM midias ORDER BY $campo $ordem";
-echo $sql;
 $stmt = $conn->query($sql);
 
 ?>
